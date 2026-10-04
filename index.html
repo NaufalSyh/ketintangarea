@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peta Kelurahan Ketintang</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #1f2937;
+        }
+
+        /* =========================
+       HEADER
+    ========================= */
+
+        header {
+            padding: 25px 40px;
+            background: #1e3a5f;
+            color: white;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 6px 0 0;
+            opacity: 0.85;
+        }
+
+        /* =========================
+       CONTAINER
+    ========================= */
+
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* =========================
+       CARD
+    ========================= */
+
+        .card {
+            margin-bottom: 25px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-header {
+            padding: 20px 25px;
+        }
+
+        .card-header h2 {
+            margin: 0;
+            font-size: 21px;
+        }
+
+        .card-header p {
+            margin: 7px 0 0;
+            color: #6b7280;
+        }
+
+        /* =========================
+       MAP
+    ========================= */
+
+        #map {
+            width: 100%;
+            height: 600px;
+        }
+
+        /* =========================
+       LEGEND
+    ========================= */
+
+        .legend {
+            padding: 15px 25px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-line {
+            width: 35px;
+            height: 4px;
+            background: #dc2626;
+        }
+
+        /* =========================
+       INFORMATION
+    ========================= */
+
+        .information {
+            padding: 25px;
+        }
+
+        .information h2 {
+            margin-top: 0;
+        }
+
+        .metadata {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .label,
+        .value {
+            padding: 13px 10px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .label {
+            font-weight: bold;
+            background: #f9fafb;
+        }
+
+        .value {
+            color: #4b5563;
+        }
+
+        /* =========================
+       FOOTER
+    ========================= */
+
+        footer {
+            padding: 25px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        /* =========================
+       RESPONSIVE
+    ========================= */
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 20px;
+            }
+
+            main {
+                margin-top: 20px;
+            }
+
+            #map {
+                height: 450px;
+            }
+
+            .metadata {
+                grid-template-columns: 1fr;
+            }
+
+            .label {
+                border-bottom: none;
+                padding-bottom: 5px;
+            }
+
+            .value {
+                padding-top: 5px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- =========================
+     HEADER
+========================= -->
+
+    <header>
+
+        <h1>
+            Peta Wilayah Ketintang
+        </h1>
+
+        <p>
+            Kelurahan Ketintang, Kecamatan Gayungan, Kota Surabaya
+        </p>
+
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+         MAP
+    ========================= -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                <h2>
+                    Lokasi dan Batas Wilayah
+                </h2>
+
+                <p>
+                    Batas wilayah diambil dari relation
+                    OpenStreetMap Kelurahan Ketintang.
+                </p>
+
+            </div>
+
+
+            <div id="map"></div>
+
+
+            <div class="legend">
+
+                <div class="legend-item">
+
+                    <span class="legend-line"></span>
+
+                    <span>
+                        Batas Kelurahan Ketintang
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+         INFORMATION
+    ========================= -->
+
+        <section class="card">
+
+            <div class="information">
+
+                <h2>
+                    Informasi Wilayah
+                </h2>
+
+
+                <div class="metadata">
+
+                    <div class="label">
+                        Kelurahan
+                    </div>
+
+                    <div class="value">
+                        Ketintang
+                    </div>
+
+
+                    <div class="label">
+                        Kecamatan
+                    </div>
+
+                    <div class="value">
+                        Gayungan
+                    </div>
+
+
+                    <div class="label">
+                        Kota
+                    </div>
+
+                    <div class="value">
+                        Surabaya
+                    </div>
+
+
+                    <div class="label">
+                        Provinsi
+                    </div>
+
+                    <div class="value">
+                        Jawa Timur
+                    </div>
+
+
+                    <div class="label">
+                        OSM Relation
+                    </div>
+
+                    <div class="value">
+                        8225413
+                    </div>
+
+
+                    <div class="label">
+                        Luas OSM
+                    </div>
+
+                    <div class="value">
+                        ± 2,528 km²
+                    </div>
+
+
+                    <div class="label">
+                        Perimeter OSM
+                    </div>
+
+                    <div class="value">
+                        ± 8,712 meter
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+     FOOTER
+========================= -->
+
+    <footer>
+
+        Peta © OpenStreetMap contributors and web created by Naufal
+
+    </footer>
+
+
+    <!-- =========================
+     LEAFLET JS
+========================= -->
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+
+    <script>
+
+        /* =========================
+           INISIALISASI PETA
+        ========================= */
+
+        const map = L.map("map");
+
+
+        /* =========================
+           OPENSTREETMAP
+        ========================= */
+
+        L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+                maxZoom: 19,
+
+                attribution:
+                    "&copy; OpenStreetMap contributors"
+            }
+        ).addTo(map);
+
+
+        /* =========================
+           URL GEOJSON KETINTANG
+        ========================= */
+
+        const boundaryUrl =
+            "https://polygons.openstreetmap.fr/get_geojson.py?id=8225413&params=0";
+
+
+        /* =========================
+           STYLE BATAS
+        ========================= */
+
+        const boundaryStyle = {
+
+            color: "#dc2626",
+
+            weight: 4,
+
+            opacity: 1,
+
+            fillColor: "#ef4444",
+
+            fillOpacity: 0.15
+
+        };
+
+
+        /* =========================
+           LOAD BATAS KETINTANG
+        ========================= */
+
+        fetch(boundaryUrl)
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Gagal mengambil data batas Ketintang."
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(data => {
+
+                const boundary =
+                    L.geoJSON(
+                        data,
+                        {
+                            style: boundaryStyle,
+
+                            onEachFeature:
+                                function (feature, layer) {
+
+                                    layer.bindPopup(`
+                                    <strong>
+                                        Kelurahan Ketintang
+                                    </strong>
+                                    <br>
+                                    Kecamatan Gayungan
+                                    <br>
+                                    Kota Surabaya
+                                    <br><br>
+                                    OSM Relation:
+                                    8225413
+                                `);
+
+                                }
+                        }
+                    )
+                        .addTo(map);
+
+
+                /* =========================
+                   ZOOM OTOMATIS
+                ========================= */
+
+                map.fitBounds(
+                    boundary.getBounds(),
+                    {
+                        padding: [30, 30]
+                    }
+                );
+
+            })
+
+            .catch(error => {
+
+                console.error(error);
+
+                map.setView(
+                    [-7.31869, 112.72973],
+                    14
+                );
+
+                L.popup()
+                    .setLatLng(
+                        [-7.31869, 112.72973]
+                    )
+                    .setContent(`
+                    <strong>
+                        Kelurahan Ketintang
+                    </strong>
+                    <br><br>
+                    Data batas OSM tidak dapat
+                    dimuat saat ini.
+                `)
+                    .openOn(map);
+
+            });
+
+    </script>
+
+</body>
+
+</html>
